@@ -1,0 +1,14 @@
+syntax = "proto3";
+package andreazka.mioblog.mioblog;
+
+import "gogoproto/gogo.proto";
+import "mioblog/params.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+
+option go_package = "github.com/andreaZka/mioblog/x/mioblog/types";
+
+// GenesisState defines the mioblog module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+  // this line is used by starport scaffolding # genesis/proto/state
+}
