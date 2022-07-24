@@ -1,0 +1,9 @@
+syntax = "proto3";
+package andreazka.mioblog.mioblog;
+
+option go_package = "github.com/andreaZka/mioblog/x/mioblog/types";
+
+message NextPost {
+  uint64 idValue = 1; 
+  
+}

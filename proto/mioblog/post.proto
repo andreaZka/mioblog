@@ -1,0 +1,12 @@
+syntax = "proto3";
+package andreazka.mioblog.mioblog;
+
+option go_package = "github.com/andreaZka/mioblog/x/mioblog/types";
+
+message Post {
+  string index = 1; 
+  string title = 2; 
+  string body = 3; 
+  
+}
+

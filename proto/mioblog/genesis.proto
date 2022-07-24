@@ -3,6 +3,8 @@ package andreazka.mioblog.mioblog;
 
 import "gogoproto/gogo.proto";
 import "mioblog/params.proto";
+import "mioblog/post.proto";
+import "mioblog/next_post.proto";
 // this line is used by starport scaffolding # genesis/proto/import
 
 option go_package = "github.com/andreaZka/mioblog/x/mioblog/types";
@@ -10,5 +12,7 @@ option go_package = "github.com/andreaZka/mioblog/x/mioblog/types";
 // GenesisState defines the mioblog module's genesis state.
 message GenesisState {
   Params params = 1 [(gogoproto.nullable) = false];
+  repeated Post postList = 2 [(gogoproto.nullable) = false];
+  NextPost nextPost = 3;
   // this line is used by starport scaffolding # genesis/proto/state
 }

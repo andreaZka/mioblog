@@ -5,6 +5,8 @@ import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "mioblog/params.proto";
+import "mioblog/post.proto";
+import "mioblog/next_post.proto";
 // this line is used by starport scaffolding # 1
 
 option go_package = "github.com/andreaZka/mioblog/x/mioblog/types";
@@ -15,7 +17,21 @@ service Query {
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
     option (google.api.http).get = "/andreaZka/mioblog/mioblog/params";
   }
-  // this line is used by starport scaffolding # 2
+  // Queries a Post by index.
+	rpc Post(QueryGetPostRequest) returns (QueryGetPostResponse) {
+		option (google.api.http).get = "/andreaZka/mioblog/mioblog/post/{index}";
+	}
+
+	// Queries a list of Post items.
+	rpc PostAll(QueryAllPostRequest) returns (QueryAllPostResponse) {
+		option (google.api.http).get = "/andreaZka/mioblog/mioblog/post";
+	}
+
+// Queries a NextPost by index.
+	rpc NextPost(QueryGetNextPostRequest) returns (QueryGetNextPostResponse) {
+		option (google.api.http).get = "/andreaZka/mioblog/mioblog/next_post";
+	}
+// this line is used by starport scaffolding # 2
 }
 
 // QueryParamsRequest is request type for the Query/Params RPC method.
@@ -27,4 +43,27 @@ message QueryParamsResponse {
   Params params = 1 [(gogoproto.nullable) = false];
 }
 
+message QueryGetPostRequest {
+	  string index = 1;
+
+}
+
+message QueryGetPostResponse {
+	Post post = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllPostRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllPostResponse {
+	repeated Post post = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetNextPostRequest {}
+
+message QueryGetNextPostResponse {
+	NextPost NextPost = 1 [(gogoproto.nullable) = false];
+}
 // this line is used by starport scaffolding # 3
